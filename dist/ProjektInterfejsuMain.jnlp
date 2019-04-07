@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ProjektInterfejsuMain.jnlp">
+  <information>
+    <title>ProjektInterfejsuMain</title>
+    <vendor>Dom</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ProjektInterfejsuMain.jar" size="31592" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ProjektInterfejsuMain" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="projektinterfejsumain.ProjektInterfejsuMain"  name="ProjektInterfejsuMain" />
+  <update check="always"/>
+</jnlp>

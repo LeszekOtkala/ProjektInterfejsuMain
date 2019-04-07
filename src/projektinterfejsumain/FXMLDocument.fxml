@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektinterfejsumain.FXMLDocumentController">
+    <children>
+      <BorderPane prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Pracownicy - Dane umowy">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="466.0" prefWidth="776.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="57.0" prefWidth="776.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Pracownik" />
+                                          <ChoiceBox prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <TableView prefHeight="466.0" prefWidth="776.0">
+                                      <columns>
+                                        <TableColumn prefWidth="60.0" text="Aktywny" />
+                                          <TableColumn prefWidth="150.0" text="Nazwisko" />
+                                        <TableColumn prefWidth="150.0" text="Imię" />
+                                          <TableColumn prefWidth="100.0" text="Dział" />
+                                          <TableColumn prefWidth="150.0" text="Stanowisko" />
+                                          <TableColumn prefWidth="150.0" text="Data rozpoczęcia" />
+                                      </columns>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Lista Obecności">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutX="50.0" layoutY="41.0" prefHeight="466.0" prefWidth="776.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="57.0" prefWidth="776.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Pracownik" />
+                                          <ChoiceBox prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <TableView prefHeight="466.0" prefWidth="776.0">
+                                      <columns>
+                                        <TableColumn prefWidth="134.0" text="Dzien miesiąca" />
+                                        <TableColumn prefWidth="113.0" text="Rodzaj obecności" />
+                                          <TableColumn prefWidth="150.0" text="Liczba godzin podstawa" />
+                                          <TableColumn prefWidth="120.0" text="Nadgodziny 50%" />
+                                          <TableColumn prefWidth="120.0" text="Nadgodziny 100%" />
+                                          <TableColumn prefWidth="120.0" text="Godziny ogółem" />
+                                          <TableColumn prefWidth="75.0" text="Uwagi" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Lista płac">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="466.0" prefWidth="776.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="57.0" prefWidth="776.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Pracownik" />
+                                          <ChoiceBox prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <TableView prefHeight="466.0" prefWidth="776.0">
+                                       <columns>
+                                          <TableColumn prefWidth="134.0" text="Nazwisko" />
+                                          <TableColumn prefWidth="113.0" text="Imię" />
+                                          <TableColumn prefWidth="150.0" text="Wynagrodzenie brutto" />
+                                          <TableColumn prefWidth="75.0" text="Premia" />
+                                          <TableColumn prefWidth="120.0" text="Wynagrodzenie netto" />
+                                          <TableColumn prefWidth="120.0" text="Zaliczka na podatek" />
+                                          <TableColumn prefWidth="120.0" text="ZUS - socjalne" />
+                                          <TableColumn prefWidth="75.0" text="ZUS - zdrwotne" />
+                                          <TableColumn prefWidth="75.0" text="ZUS - Fundusz Pracy" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Podsumowanie">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab text="Raporty">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab text="Wydruki">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Plik">
+                        <items>
+                              <MenuItem mnemonicParsing="false" text="Zaloguj" />
+                              <MenuItem mnemonicParsing="false" text="Połącz z BD" />
+                          <MenuItem mnemonicParsing="false" text="Zamknij" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edycja">
+                        <items>
+                              <MenuItem mnemonicParsing="false" text="Dodaj" />
+                              <MenuItem mnemonicParsing="false" text="Edytuj" />
+                              <MenuItem mnemonicParsing="false" text="Zapisz" />
+                          <MenuItem mnemonicParsing="false" text="Usuń" />
+                        </items>
+                      </Menu>
+                        <Menu mnemonicParsing="false" text="Ustawienia">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Wybierz rok" />
+                          </items>
+                        </Menu>
+                      <Menu mnemonicParsing="false" text="Pomoc">
+                        <items>
+                              <MenuItem mnemonicParsing="false" text="O programie" />
+                          <MenuItem mnemonicParsing="false" text="Autor" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                      <Button fx:id="loginButton" mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/login.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/dbopt.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/close.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Separator orientation="VERTICAL" />
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/edit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false">
+                           <graphic>
+                              <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Separator layoutX="220.0" layoutY="10.0" orientation="VERTICAL" />
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/year.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Separator layoutX="270.0" layoutY="10.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/help.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/author.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                    </items>
+                  </ToolBar>
+               </children>
+            </VBox>
+         </top>
+         <left>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                    <Label fx:id="label" alignment="CENTER" minHeight="16" minWidth="69" prefHeight="29.0" prefWidth="69.0" text="Miesiąc" />
+                  <ListView id="months" fx:id="months" prefHeight="523.0" prefWidth="248.0" />
+               </children>
+            </VBox>
+         </left>
+         <bottom>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="31.0" prefWidth="1004.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Dodaj">
+                     <graphic>
+                        <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" text="Edytuj">
+                     <graphic>
+                        <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" text="Zapisz">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Usuń">
+                     <graphic>
+                        <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                    <Button fx:id="button" onAction="#handleButtonAction" text="Zamknij">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" right="20.0" />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+      </BorderPane>
+    </children>
+</AnchorPane>
