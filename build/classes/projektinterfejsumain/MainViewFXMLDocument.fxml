@@ -21,13 +21,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektinterfejsumain.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektinterfejsumain.MainViewFXMLDocumentController">
     <children>
       <BorderPane prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab text="Pracownicy - Dane umowy">
+                <Tab fx:id="tabEmployees" text="Pracownicy - Dane umowy">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -39,14 +39,14 @@
                                           <ChoiceBox prefWidth="150.0" />
                                        </children>
                                     </HBox>
-                                    <TableView prefHeight="466.0" prefWidth="776.0">
+                                    <TableView fx:id="employeesTable" prefHeight="466.0" prefWidth="776.0">
                                       <columns>
-                                        <TableColumn prefWidth="60.0" text="Aktywny" />
-                                          <TableColumn prefWidth="150.0" text="Nazwisko" />
-                                        <TableColumn prefWidth="150.0" text="Imię" />
-                                          <TableColumn prefWidth="100.0" text="Dział" />
-                                          <TableColumn prefWidth="150.0" text="Stanowisko" />
-                                          <TableColumn prefWidth="150.0" text="Data rozpoczęcia" />
+                                        <TableColumn fx:id="activeColumn" prefWidth="60.0" text="Aktywny" />
+                                          <TableColumn fx:id="surnameColumn" prefWidth="150.0" text="Nazwisko" />
+                                        <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Imię" />
+                                          <TableColumn fx:id="sectionColumn" prefWidth="100.0" text="Dział" />
+                                          <TableColumn fx:id="positionColumn" prefWidth="150.0" text="Stanowisko" />
+                                          <TableColumn fx:id="startDateColumn" prefWidth="150.0" text="Data rozpoczęcia" />
                                       </columns>
                                        <VBox.margin>
                                           <Insets />
@@ -60,7 +60,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Lista Obecności">
+                <Tab fx:id="tabAttendanceList" text="Lista Obecności">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -150,8 +150,8 @@
                       </Menu>
                       <Menu mnemonicParsing="false" text="Edycja">
                         <items>
-                              <MenuItem mnemonicParsing="false" text="Dodaj" />
-                              <MenuItem mnemonicParsing="false" text="Edytuj" />
+                              <MenuItem mnemonicParsing="false" onAction="#addButtonAction" text="Dodaj" />
+                              <MenuItem mnemonicParsing="false" onAction="#editButtonAction" text="Edytuj" />
                               <MenuItem mnemonicParsing="false" text="Zapisz" />
                           <MenuItem mnemonicParsing="false" text="Usuń" />
                         </items>
@@ -160,6 +160,12 @@
                           <items>
                             <MenuItem mnemonicParsing="false" text="Wybierz rok" />
                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Filtrowanie">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#filtrButtonAction" text="Filtruj" />
+                              <MenuItem mnemonicParsing="false" text="Wyczyść filtr" />
+                           </items>
                         </Menu>
                       <Menu mnemonicParsing="false" text="Pomoc">
                         <items>
@@ -187,7 +193,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#handleButtonAction">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -196,7 +202,7 @@
                               </ImageView>
                            </graphic></Button>
                         <Separator orientation="VERTICAL" />
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#addButtonAction">
                            <graphic>
                               <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -208,7 +214,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#editButtonAction">
                            <graphic>
                               <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -243,6 +249,25 @@
                               </ImageView>
                            </graphic></Button>
                         <Separator layoutX="270.0" layoutY="10.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
+                        <Button layoutX="400.0" layoutY="11.0" mnemonicParsing="false" onAction="#filtrButtonAction">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/filter.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="360.0" layoutY="11.0" mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/delFilter.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Separator layoutX="350.0" layoutY="10.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
                         <Button mnemonicParsing="false">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -275,7 +300,7 @@
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="31.0" prefWidth="1004.0" spacing="5.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="Dodaj">
+                  <Button mnemonicParsing="false" onAction="#addButtonAction" text="Dodaj">
                      <graphic>
                         <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -283,7 +308,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" text="Edytuj">
+                  <Button mnemonicParsing="false" onAction="#editButtonAction" text="Edytuj">
                      <graphic>
                         <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -291,7 +316,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" text="Zapisz">
+                  <Button mnemonicParsing="false" onAction="#refreshButtonAction" text="Zapisz">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

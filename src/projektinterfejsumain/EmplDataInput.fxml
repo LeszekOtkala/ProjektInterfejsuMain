@@ -55,22 +55,22 @@
                   <Label text="Kod pocztowy" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label text="Dział" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <Label text="Stanowisko" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="emplName" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </TextField>
-                  <TextField alignment="TOP_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="emplSurname" alignment="TOP_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <TextField fx:id="emplSection" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <TextField fx:id="emplPosition" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                   <Label text="Data zatrudnienia" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                   <Label text="Okres zatrudnienia" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                  <TextField fx:id="emplStartDate" GridPane.columnIndex="1" GridPane.rowIndex="15" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="17" />
-                  <CheckBox mnemonicParsing="false" text="Aktywny" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                  <CheckBox fx:id="emplActive" mnemonicParsing="false" text="Aktywny" GridPane.columnIndex="1" GridPane.rowIndex="18" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="40.0" left="30.0" right="50.0" top="10.0" />
@@ -78,7 +78,7 @@
             </GridPane>
          </center>
          <top>
-            <Label text="Dodaj pracownika" BorderPane.alignment="CENTER">
+            <Label text="Pracownik" BorderPane.alignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -91,8 +91,8 @@
             <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
                <children>
                   <Button mnemonicParsing="false" text="Anuluj" />
-                  <Button mnemonicParsing="false" text="Zastosuj" />
-                  <Button mnemonicParsing="false" text="Zapisz" />
+                  <Button fx:id="emplSave" mnemonicParsing="false" onAction="#emplAddButtonAction" text="Zapisz" />
+                  <Button fx:id="emplExit" mnemonicParsing="false" onAction="#emplExitButtonAction" text="Zamknij" />
                </children>
                <opaqueInsets>
                   <Insets />
