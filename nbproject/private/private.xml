@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/ProjektInterfejsuMain.java</file>
             <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/Model.java</file>
-            <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/EmplDataInputController.java</file>
+            <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/FilretingController.java</file>
             <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/MainViewFXMLDocumentController.java</file>
-            <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/Employee.java</file>
+            <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/AttendanceList.java</file>
+            <file>file:/C:/Users/Dom/Documents/NetBeansProjects/JavaFxml1/ProjektInterfejsuMain/src/projektinterfejsumain/EmployeePresence.java</file>
         </group>
     </open-files>
 </project-private>

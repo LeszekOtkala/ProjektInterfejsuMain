@@ -7,15 +7,11 @@ package projektinterfejsumain;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,16 +19,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 /**
@@ -41,7 +39,7 @@ import javafx.stage.WindowEvent;
  */
 public class MainViewFXMLDocumentController implements Initializable {
     
-    
+   //elementy GUI 
     @FXML
     private Label label;
      
@@ -58,10 +56,7 @@ public class MainViewFXMLDocumentController implements Initializable {
      @FXML
     private TableView<Employee> employeesTable= new TableView<>();
 
-    
-
-    
-       @FXML
+     @FXML
     private TableColumn<Employee, Boolean> activeColumn=new TableColumn<>();
 
     @FXML
@@ -78,18 +73,27 @@ public class MainViewFXMLDocumentController implements Initializable {
 
     @FXML
     private TableColumn<Employee, String> startDateColumn=new TableColumn<>();
+   
+    @FXML
+    private ChoiceBox employeeEmployesChoiceBox=new ChoiceBox();
+    
+    @FXML
+    private ChoiceBox<?> employeeAttedanceListChoiceBox;
+     
+    @FXML
+    private ChoiceBox<?> employeePayrollChoiceBox; 
+    
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        //System.out.println("You clicked me!");
-        //label.setText("Hello World!");
         Platform.exit();
         System.exit(0);
     }
+    
+    //metody, akcje itd
     @FXML
     private void addButtonAction(ActionEvent event){
       try{
-                  //System.out.println(employeesTable.getSelectionModel().getSelectedItem().getName());
-                  
+                                   
         FXMLLoader fxmlLoader=new FXMLLoader();//(getClass().getResource("EmplDataInput.fxml"));
          fxmlLoader.setLocation(getClass().getResource("EmplDataInput.fxml"));
         //Parent root1= (Parent)fxmlLoader.load();
@@ -120,7 +124,7 @@ public class MainViewFXMLDocumentController implements Initializable {
     private void editButtonAction(ActionEvent event){
        try{
         if(employeesTable.getSelectionModel().getSelectedItem()==null) 
-            ;//tu można zrobić wyświetlenie komunikatu "Wybierz pracownika"
+            showAlert();//tu można zrobić wyświetlenie komunikatu "Wybierz pracownika"
         else{
         FXMLLoader fxmlLoader=new FXMLLoader();//(getClass().getResource("EmplDataInput.fxml"));
         fxmlLoader.setLocation(getClass().getResource("EmplDataInput.fxml"));
@@ -140,12 +144,16 @@ public class MainViewFXMLDocumentController implements Initializable {
         System.out.println("Cant load new window");
         } 
     }
+    //akcja dla otwarcia panelu do filtrowania
     @FXML
-    private void filtrButtonAction(ActionEvent event){
+    private void filterButtonAction(ActionEvent event){
        try{
-        FXMLLoader fxmlLoader=new FXMLLoader();//(getClass().getResource("EmplDataInput.fxml"));
+        refreshAction(5);   
+        FXMLLoader fxmlLoader=new FXMLLoader();
          fxmlLoader.setLocation(getClass().getResource("filreting.fxml"));
         Parent root2= (Parent)fxmlLoader.load();
+        FilretingController fController=fxmlLoader.getController();
+        fController.setMainControler(this);
         Scene scene=new Scene(root2);
         Stage stage= new Stage();
         stage.setScene(scene);
@@ -158,33 +166,59 @@ public class MainViewFXMLDocumentController implements Initializable {
         System.out.println("Cant load new window");
         } 
     }
-     @FXML
-    private void refreshButtonAction(ActionEvent event){
+    //akcja dla wyczyszsczenia filtrów
+    @FXML
+    private void clearFilterButtonAction(ActionEvent event){
         employeesTable.getItems().clear();
-        employeesTable.getItems().addAll(Model.getEmployersList());
+        employeesTable.getItems().addAll(Model.getEmployersList()); 
+     }
+   //akcja dla odświeżenia tabeli pracowników 
+    public void refreshAction(int filterNumber){
+        employeesTable.getItems().clear();
+        employeesTable.getItems().addAll(Model.getFilteredEmployeesList(filterNumber));
+        
     }
-    @FXML private void onSelectionChangedTabEmployees(ActionEvent event){
-        System.out.println(tabEmployees.isSelected());
+    
+    @FXML
+    private void removeEmployeeAction(){
+        if(employeesTable.getSelectionModel().getSelectedItem()!=null)
+         showConfirmationAlert();
+        else
+         showAlert();
     }
+    
+    @FXML
+    private void employesChoiceBoxAction(ActionEvent event){
+        int choice=employeeEmployesChoiceBox.getSelectionModel().getSelectedIndex();
+        if(choice==2)
+        Model.setActiveFilter(false);
+        else
+        Model.setActiveFilter(true);
+        
+        refreshAction(6);
+    }
+    
     @FXML
     private ListView<String> months = new ListView<>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-       // label.setText("Test kontrolera");
-         
-        // Add the items to the List 
-        
+        //utworzenie listy pracowników        
         Model.createEmployeesList();
-        
+        //utworzenie listy miesięcy i dodanie do widoku !!!zrobić to na observable!!!
         months.getItems().addAll(createMonthList());
+        //powiązanie kolumn z polami obiektów klasy Employee
         activeColumn.setCellValueFactory(new PropertyValueFactory<Employee,Boolean>("active"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("name") );
         surnameColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("surname") );
         sectionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("section") );
         positionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("position") );
         startDateColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("startDate") );
+        //"załadowanie" listy pracowników do ListView
         employeesTable.getItems().addAll(Model.getEmployersList());
+        
+        
+        //dodanie słuchacza dla listy pracowników, zmiana listy spowoduje odświeżenie widoku,
+        //skasowane też zostana filtry jeżeli były ustawione
         Model.getEmployersList().addListener((ListChangeListener<Employee>) c->{
             while(c.next()){
                 //if(c.wasAdded()){
@@ -194,8 +228,12 @@ public class MainViewFXMLDocumentController implements Initializable {
             }
               
         });
-        
-        
+    employeeEmployesChoiceBox.getItems().add(0, "Wszyscy");
+    employeeEmployesChoiceBox.getItems().add(1, "Aktywny");
+    employeeEmployesChoiceBox.getItems().add(2, "Nieaktywny");
+    
+    
+       //takie głupoty 
         //employersTable.getSelectionModel().selectedItemProperty();//nieskonczone
         
         // Set the size of the ListView
@@ -237,7 +275,7 @@ public class MainViewFXMLDocumentController implements Initializable {
          
         return months;
     }
-/* 
+/* //takie głupoty 
 private ObservableList<Employer> createEmployerList()
     {
         ObservableList<Employer> employers = FXCollections.observableArrayList();
@@ -246,8 +284,29 @@ private ObservableList<Employer> createEmployerList()
         return employers;
     } 
 
-public void addEmployerToList(){
-    employersTable.getItems().add(new Employer("Marian","Paździoch","księgowośc","księgowy","01.01.2017",false));
 }*/
+ public void showAlert(){
+Alert alert = new Alert(AlertType.INFORMATION);
+alert.setTitle("Uwaga!");
+alert.setHeaderText("Nie wybrano pracownika!");
+alert.setContentText("Żeby wykonać tę operację zaznacz pracownika, którego chcesz edytować!");
 
+alert.showAndWait();
+ }
+ 
+ public void showConfirmationAlert(){
+     
+     Alert alert = new Alert(AlertType.CONFIRMATION);
+alert.setTitle("Usuń pracownika");
+alert.setHeaderText("Jesteś pewien?");
+alert.setContentText("Czy chcesz usunąć pracownika "+employeesTable.getSelectionModel().getSelectedItem().getName()+" "
+                        +employeesTable.getSelectionModel().getSelectedItem().getSurname()+"?");
+
+Optional<ButtonType> result = alert.showAndWait();
+if (result.get() == ButtonType.OK){
+    Model.removeEmployee(employeesTable.getSelectionModel().getSelectedItem());
+} else {
+    alert.close();
+}
+ }
 }

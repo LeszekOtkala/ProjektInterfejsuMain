@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="projektinterfejsumain.FilretingController">
+<AnchorPane id="AnchorPane" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektinterfejsumain.FilretingController">
     <stylesheets>
         <URL value="@filreting.css" />
     </stylesheets>
@@ -28,14 +28,14 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <ChoiceBox prefWidth="150.0" />
-                  <TextField />
+                  <ChoiceBox fx:id="choiceBoxFilter" prefWidth="150.0" />
+                  <TextField fx:id="textFieldFilter" />
                </children>
             </HBox>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" prefWidth="70.0" text="Anuluj" />
-                  <Button mnemonicParsing="false" prefWidth="70.0" text="Filtruj">
+                  <Button fx:id="buttonCancel" mnemonicParsing="false" onAction="#buttonCancelAction" prefWidth="70.0" text="Anuluj" />
+                  <Button fx:id="buttonFilter" mnemonicParsing="false" onAction="#buttonFilterAction" prefWidth="70.0" text="Filtruj">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

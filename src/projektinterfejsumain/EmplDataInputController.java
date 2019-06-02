@@ -22,6 +22,8 @@ import javafx.stage.Stage;
  * @author Dom
  */
 public class EmplDataInputController implements Initializable {
+    
+    //pole dla wymiany pracownika dla edycji na liście
     private Employee employee;
 
     public Employee getEmployee() {
@@ -34,7 +36,8 @@ public class EmplDataInputController implements Initializable {
     /**
      * Initializes the controller class.
      */
-       @FXML
+    //pola GUI
+    @FXML
     private TextField emplName;
 
     @FXML
@@ -56,6 +59,7 @@ public class EmplDataInputController implements Initializable {
    private Button emplSave;
     @FXML
    private Button emplExit;
+    //akcja dla zamknięcia okna dodawania/edycji danych pracownika
    @FXML
     private void emplExitButtonAction(ActionEvent event){
        
@@ -66,6 +70,7 @@ public class EmplDataInputController implements Initializable {
          stage.close();
         
      }
+    //akcja dla edycji/dodania pracownika do listy
     @FXML
     private void emplAddButtonAction(ActionEvent event){
        if(this.getEmployee()!=null)
@@ -91,12 +96,13 @@ public class EmplDataInputController implements Initializable {
       TextField emplStartDate=new TextField();
       CheckBox emplActive=new CheckBox();
       
-      System.out.println("tu się utworzył");
+      //System.out.println("tu się utworzył");
       if(this.getEmployee()!=null) 
       setEditEmployee();
-      System.out.println(this.getEmployee());
+      //System.out.println(this.getEmployee());
       });
-    } }   
+    } }  
+    //ustawienie pól GUI na dane edytowaniego pracownika
    public void setEditEmployee(){
        emplName.setText(employee.getName());
        emplSurname.setText(employee.getSurname());

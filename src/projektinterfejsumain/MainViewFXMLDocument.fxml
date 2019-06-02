@@ -36,7 +36,7 @@
                                     <HBox alignment="CENTER" prefHeight="57.0" prefWidth="776.0" spacing="10.0">
                                        <children>
                                           <Label text="Pracownik" />
-                                          <ChoiceBox prefWidth="150.0" />
+                                          <ChoiceBox fx:id="employeeEmployesChoiceBox" onMouseReleased="#employesChoiceBoxAction" prefWidth="150.0" />
                                        </children>
                                     </HBox>
                                     <TableView fx:id="employeesTable" prefHeight="466.0" prefWidth="776.0">
@@ -55,6 +55,67 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </TableView>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="31.0" prefWidth="1004.0" spacing="5.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#addButtonAction" text="Dodaj">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/add.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#editButtonAction" text="Edytuj">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/edit.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="Zapisz">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/save.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#removeEmployeeAction" text="Usuń">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/delete.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                            <Button fx:id="button" onAction="#handleButtonAction" text="Zamknij">
+                                             <graphic>
+                                                <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/close.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children></AnchorPane>
@@ -69,7 +130,7 @@
                                     <HBox alignment="CENTER" prefHeight="57.0" prefWidth="776.0" spacing="10.0">
                                        <children>
                                           <Label text="Pracownik" />
-                                          <ChoiceBox prefWidth="150.0" />
+                                          <ChoiceBox fx:id="employeeAttedanceListChoiceBox" prefWidth="150.0" />
                                        </children>
                                     </HBox>
                                     <TableView prefHeight="466.0" prefWidth="776.0">
@@ -83,6 +144,67 @@
                                           <TableColumn prefWidth="75.0" text="Uwagi" />
                                       </columns>
                                     </TableView>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="31.0" prefWidth="1004.0" spacing="5.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="Dodaj">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/add.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="Edytuj">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/edit.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="Zapisz">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/save.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="Usuń">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/delete.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="button1" onAction="#handleButtonAction" text="Zamknij">
+                                             <graphic>
+                                                <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/close.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children></AnchorPane>
@@ -92,12 +214,12 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <VBox prefHeight="466.0" prefWidth="776.0">
+                              <VBox prefHeight="506.0" prefWidth="776.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="57.0" prefWidth="776.0" spacing="10.0">
                                        <children>
                                           <Label text="Pracownik" />
-                                          <ChoiceBox prefWidth="150.0" />
+                                          <ChoiceBox fx:id="employeePayrollChoiceBox" prefWidth="150.0" />
                                        </children>
                                     </HBox>
                                     <TableView prefHeight="466.0" prefWidth="776.0">
@@ -113,6 +235,67 @@
                                           <TableColumn prefWidth="75.0" text="ZUS - Fundusz Pracy" />
                                        </columns>
                                     </TableView>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="31.0" prefWidth="1004.0" spacing="5.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="Dodaj">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/add.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="Edytuj">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/edit.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="Zapisz">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/save.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="Usuń">
+                                             <graphic>
+                                                <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/delete.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="button11" onAction="#handleButtonAction" text="Zamknij">
+                                             <graphic>
+                                                <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/icons/close.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets bottom="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children></AnchorPane>
@@ -153,7 +336,7 @@
                               <MenuItem mnemonicParsing="false" onAction="#addButtonAction" text="Dodaj" />
                               <MenuItem mnemonicParsing="false" onAction="#editButtonAction" text="Edytuj" />
                               <MenuItem mnemonicParsing="false" text="Zapisz" />
-                          <MenuItem mnemonicParsing="false" text="Usuń" />
+                          <MenuItem mnemonicParsing="false" onAction="#removeEmployeeAction" text="Usuń" />
                         </items>
                       </Menu>
                         <Menu mnemonicParsing="false" text="Ustawienia">
@@ -163,8 +346,8 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Filtrowanie">
                            <items>
-                              <MenuItem mnemonicParsing="false" onAction="#filtrButtonAction" text="Filtruj" />
-                              <MenuItem mnemonicParsing="false" text="Wyczyść filtr" />
+                              <MenuItem mnemonicParsing="false" onAction="#filterButtonAction" text="Filtruj" />
+                              <MenuItem mnemonicParsing="false" onAction="#clearFilterButtonAction" text="Wyczyść filtr" />
                            </items>
                         </Menu>
                       <Menu mnemonicParsing="false" text="Pomoc">
@@ -230,7 +413,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false">
+                        <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" onAction="#removeEmployeeAction">
                            <graphic>
                               <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -249,7 +432,7 @@
                               </ImageView>
                            </graphic></Button>
                         <Separator layoutX="270.0" layoutY="10.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
-                        <Button layoutX="400.0" layoutY="11.0" mnemonicParsing="false" onAction="#filtrButtonAction">
+                        <Button layoutX="400.0" layoutY="11.0" mnemonicParsing="false" onAction="#filterButtonAction">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -258,7 +441,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button layoutX="360.0" layoutY="11.0" mnemonicParsing="false">
+                        <Button layoutX="360.0" layoutY="11.0" mnemonicParsing="false" onAction="#clearFilterButtonAction">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -294,69 +477,10 @@
                <children>
                     <Label fx:id="label" alignment="CENTER" minHeight="16" minWidth="69" prefHeight="29.0" prefWidth="69.0" text="Miesiąc" />
                   <ListView id="months" fx:id="months" prefHeight="523.0" prefWidth="248.0" />
+                  <HBox prefHeight="79.0" prefWidth="248.0" />
                </children>
             </VBox>
          </left>
-         <bottom>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="31.0" prefWidth="1004.0" spacing="5.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#addButtonAction" text="Dodaj">
-                     <graphic>
-                        <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/icons/add.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#editButtonAction" text="Edytuj">
-                     <graphic>
-                        <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/icons/edit.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#refreshButtonAction" text="Zapisz">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/icons/save.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Usuń">
-                     <graphic>
-                        <ImageView disable="true" fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/icons/delete.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets right="15.0" />
-                     </HBox.margin>
-                  </Button>
-                    <Button fx:id="button" onAction="#handleButtonAction" text="Zamknij">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/icons/close.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <BorderPane.margin>
-                  <Insets bottom="5.0" right="20.0" />
-               </BorderPane.margin>
-            </HBox>
-         </bottom>
       </BorderPane>
     </children>
 </AnchorPane>
