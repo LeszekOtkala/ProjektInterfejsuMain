@@ -11,33 +11,62 @@ package projektinterfejsumain;
  */
 public class Employee {
     
-    
+    //todo pozmieniac wywołania konstruktorów w innych klasach
     private String name;
     private String surname;
-    private String section;
-    private String position;
-    private String startDate;
+    private String addressStreet;
+    private String addressCity;
+    private String postal;
+    private String personalId;
+   // private String section;
+    //private String position;
+   // private String startDate;
     private boolean active;
+    private int children;
+    private String maritalStatus;
+    private String dateOfBirth;
+    private String sex;
+    private String accountNo;
+    
 
     
     
     public Employee(){
-        this.name="Imie";
-        this.surname="Nazwisko";
-        this.section="Dział";
-        this.position="Stanowisko";
-        this.startDate="01.01.2000";
-        this.active=false;
+        this.name = "Imię";
+        this.surname = "Nazwisko";
+        this.addressStreet = "Ulica, Nr";
+        this.addressCity = "Miasto";
+        this.postal = "Kod pocztowy";
+        this.personalId = "PESEL";
+        //this.section = "Dział";
+        //this.position = "Stanowisko";
+        //this.startDate = "Data zatrudnienia";
+        this.active = false;
+        this.children = 0;
+        this.maritalStatus = "stan cywilny";
+        this.dateOfBirth = "Data urodzenia";
+        this.sex = "płeć";
+        this.accountNo ="Nr konta";
     }
-     
-    public Employee(String name, String surname, String section, String position, String startDate, boolean active){
-        this.name=name;
-        this.surname=surname;
-        this.section=section;
-        this.position=position;
-        this.startDate=startDate;
-        this.active=active;
+    
+    public Employee(String name, String surname, String addressStreet, String addressCity, String postal, String personalId, /*String section, String position, String startDate,*/ boolean active, int children, String maritalStatus, String dateOfBirth, String sex, String accountNo) {
+        this.name = name;
+        this.surname = surname;
+        this.addressStreet = addressStreet;
+        this.addressCity = addressCity;
+        this.postal = postal;
+        this.personalId = personalId;
+        //this.section = section;
+        //this.position = position;
+        //this.startDate = startDate;
+        this.active = active;
+        this.children = children;
+        this.maritalStatus = maritalStatus;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.accountNo = accountNo;
     }
+    
   public String getName() {
         return name;
     }
@@ -53,7 +82,7 @@ public class Employee {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
+/*
     public String getSection() {
         return section;
     }
@@ -77,7 +106,7 @@ public class Employee {
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
-
+*/
     public boolean isActive() {
         return active;
     }
@@ -85,4 +114,77 @@ public class Employee {
     public void setActive(boolean active) {
         this.active = active;
     }  
+        
+    public void setAddressStreet(String addressStreet){
+        this.addressStreet=addressStreet;
+    }
+    
+    public String getAddressStreet(){
+        return addressStreet;
+    }
+    
+    public void setAddressCity(String addressCity){
+        this.addressCity=addressCity;
+    }
+    public String getAddressCity(){
+        return addressCity;
+    }
+       
+    public void setPostal(String postal){
+        this.postal=postal;
+    }
+    
+    public String getPostal(){
+        return postal;
+    }
+    
+    public void setPersonalId(String personalId){
+    this.personalId=personalId;    
+    }
+    
+    public String getPersonalId(){
+        return personalId;
+    }
+    
+    public void setChildren(int children){
+        this.children=children;
+    }
+    
+    public int getChildren(){
+        return children;
+    }
+    
+    public void setMaritalStatus(String maritalStatus){
+        this.maritalStatus=maritalStatus;
+    }
+    
+    public String getMaritalStatus(){
+        return maritalStatus;
+    }
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+    
+    
+    
 }

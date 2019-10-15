@@ -135,12 +135,12 @@
                                     </HBox>
                                     <TableView prefHeight="466.0" prefWidth="776.0">
                                       <columns>
-                                        <TableColumn prefWidth="134.0" text="Dzien miesiąca" />
-                                        <TableColumn prefWidth="113.0" text="Rodzaj obecności" />
-                                          <TableColumn prefWidth="150.0" text="Liczba godzin podstawa" />
-                                          <TableColumn prefWidth="120.0" text="Nadgodziny 50%" />
-                                          <TableColumn prefWidth="120.0" text="Nadgodziny 100%" />
-                                          <TableColumn prefWidth="120.0" text="Godziny ogółem" />
+                                        <TableColumn fx:id="dayNumberColumn" prefWidth="134.0" text="Dzien miesiąca" />
+                                        <TableColumn fx:id="presenceTypeColumn" prefWidth="113.0" text="Rodzaj obecności" />
+                                          <TableColumn fx:id="basicHoursColumn" prefWidth="150.0" text="Liczba godzin podstawa" />
+                                          <TableColumn fx:id="overtime50Column" prefWidth="120.0" text="Nadgodziny 50%" />
+                                          <TableColumn fx:id="overTime100Column" prefWidth="120.0" text="Nadgodziny 100%" />
+                                          <TableColumn fx:id="totalHoursColumn" prefWidth="120.0" text="Godziny ogółem" />
                                           <TableColumn prefWidth="75.0" text="Uwagi" />
                                       </columns>
                                     </TableView>

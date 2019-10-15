@@ -84,6 +84,21 @@ public class MainViewFXMLDocumentController implements Initializable {
     private ChoiceBox<?> employeePayrollChoiceBox; 
     
     @FXML
+    private TableView<Employee>attendanceListTable= new TableView<>();
+    
+    //@FXML
+  //  private TableColumn<EmployeePresence, String> dayNumberColumn=new TableColumn<>();
+    //@FXML
+  //  private TableColumn<EmployeePresence, String> presenceTypeColumn=new TableColumn<>();
+     //@FXML
+  //  private TableColumn<EmployeePresence, String> basicHoursColumn=new TableColumn<>();
+    //@FXML
+  //  private TableColumn<EmployeePresence, String> overtime50Column=new TableColumn<>();
+      //@FXML
+  //  private TableColumn<EmployeePresence, String> overtime100Column=new TableColumn<>();
+      //@FXML
+  //  private TableColumn<EmployeePresence, String> totalHoursColumn=new TableColumn<>();
+    @FXML
     private void handleButtonAction(ActionEvent event) {
         Platform.exit();
         System.exit(0);
@@ -95,7 +110,7 @@ public class MainViewFXMLDocumentController implements Initializable {
       try{
                                    
         FXMLLoader fxmlLoader=new FXMLLoader();//(getClass().getResource("EmplDataInput.fxml"));
-         fxmlLoader.setLocation(getClass().getResource("EmplDataInput.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("EmplDataInput.fxml"));
         //Parent root1= (Parent)fxmlLoader.load();
         Scene scene=new Scene(fxmlLoader.load());
         Stage stage= new Stage();
@@ -172,6 +187,7 @@ public class MainViewFXMLDocumentController implements Initializable {
         employeesTable.getItems().clear();
         employeesTable.getItems().addAll(Model.getEmployersList()); 
      }
+    
    //akcja dla odświeżenia tabeli pracowników 
     public void refreshAction(int filterNumber){
         employeesTable.getItems().clear();
@@ -210,12 +226,20 @@ public class MainViewFXMLDocumentController implements Initializable {
         activeColumn.setCellValueFactory(new PropertyValueFactory<Employee,Boolean>("active"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("name") );
         surnameColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("surname") );
-        sectionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("section") );
-        positionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("position") );
-        startDateColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("startDate") );
+        //sectionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("section") );
+        //positionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("position") );
+        //startDateColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("startDate") );
         //"załadowanie" listy pracowników do ListView
         employeesTable.getItems().addAll(Model.getEmployersList());
+        /*
+        dayNumberColumn.setCellValueFactory(new PropertyValueFactory<EmployeePresence,String>("dayOfMonth"));
         
+        presenceType.setCellValueFactory(new PropertyValueFactory<EmployeePresence,String>("typeOfPresence") );
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<EmployeePresence,String>("surname") );
+        sectionColumn.setCellValueFactory(new PropertyValueFactory<EmployeePresence,String>("section") );
+        positionColumn.setCellValueFactory(new PropertyValueFactory<EmployeePresence,String>("position") );
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("startDate") );
+        */
         
         //dodanie słuchacza dla listy pracowników, zmiana listy spowoduje odświeżenie widoku,
         //skasowane też zostana filtry jeżeli były ustawione
@@ -231,27 +255,11 @@ public class MainViewFXMLDocumentController implements Initializable {
     employeeEmployesChoiceBox.getItems().add(0, "Wszyscy");
     employeeEmployesChoiceBox.getItems().add(1, "Aktywny");
     employeeEmployesChoiceBox.getItems().add(2, "Nieaktywny");
+    /*
     
+    */
     
-       //takie głupoty 
-        //employersTable.getSelectionModel().selectedItemProperty();//nieskonczone
-        
-        // Set the size of the ListView
-        //months.setPrefSize(200, 280);
-        // Enable multiple selection
-        //months.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-         // Set the size of the ListView
-        //months.setPrefSize(200, 280);
-        // Enable multiple selection
-        //months.getSelectionModel().
-        // Update the message Label when the selected item changes
-       /* months.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
-        {
-            public void changed(ObservableValue<? extends String> ov,
-                    final String oldvalue, final String newvalue) 
-            {
-                //monthChanged(ov, oldvalue, newvalue);
-        }});*/
+       
  
       
 
@@ -275,21 +283,12 @@ public class MainViewFXMLDocumentController implements Initializable {
          
         return months;
     }
-/* //takie głupoty 
-private ObservableList<Employer> createEmployerList()
-    {
-        ObservableList<Employer> employers = FXCollections.observableArrayList();
-        employers.add(new Employer("Jan", "Kowalski", "stolarnia", "stolarz","02.02.2018",true ));
-        employers.add(new Employer("Adam", "Nowak", "stolarnia", "stolarz","03.03.2018",true ));
-        return employers;
-    } 
 
-}*/
  public void showAlert(){
 Alert alert = new Alert(AlertType.INFORMATION);
 alert.setTitle("Uwaga!");
 alert.setHeaderText("Nie wybrano pracownika!");
-alert.setContentText("Żeby wykonać tę operację zaznacz pracownika, którego chcesz edytować!");
+alert.setContentText("Żeby wykonać tę operację zaznacz pracownika, którego dane chcesz edytować!");
 
 alert.showAndWait();
  }
@@ -305,6 +304,7 @@ alert.setContentText("Czy chcesz usunąć pracownika "+employeesTable.getSelecti
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == ButtonType.OK){
     Model.removeEmployee(employeesTable.getSelectionModel().getSelectedItem());
+    
 } else {
     alert.close();
 }
