@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ProjektInterfejsuMain.jar" size="51986" download="eager" />
+    <jar href="ProjektInterfejsuMain.jar" size="52888" download="eager" />
     <jar href="lib\mssql-jdbc-7.4.1.jre8.jar" size="1209659" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ProjektInterfejsuMain" >

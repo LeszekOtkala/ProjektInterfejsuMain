@@ -136,7 +136,7 @@
                         <Insets left="15.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Label" />
+                  <Label text="ID:" />
                   <Label text="Liczba dzieci" GridPane.rowIndex="18">
                      <GridPane.margin>
                         <Insets left="15.0" />
@@ -192,6 +192,11 @@
                         <Insets left="15.0" />
                      </GridPane.margin>
                   </DatePicker>
+                  <Label fx:id="labelEmplId" layoutX="10.0" layoutY="10.0">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
                <BorderPane.margin>
                   <Insets bottom="40.0" left="30.0" right="50.0" top="10.0" />

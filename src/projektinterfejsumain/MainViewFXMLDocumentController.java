@@ -66,14 +66,14 @@ public class MainViewFXMLDocumentController implements Initializable {
     private TableColumn<Employee, String> nameColumn=new TableColumn<>();
 
     @FXML
-    private TableColumn<Employee, String> sectionColumn=new TableColumn<>();
+    private TableColumn<Employee, String> addressStreetColumn=new TableColumn<>();
 
     @FXML
-    private TableColumn<Employee, String> positionColumn=new TableColumn<>();
+    private TableColumn<Employee, String> addressCityColumn=new TableColumn<>();
 
     @FXML
-    private TableColumn<Employee, String> startDateColumn=new TableColumn<>();
-   
+    private TableColumn<Employee, String> birthDateColumn=new TableColumn<>();
+    
     @FXML
     private ChoiceBox employeeEmployesChoiceBox=new ChoiceBox();
     
@@ -226,11 +226,12 @@ public class MainViewFXMLDocumentController implements Initializable {
         activeColumn.setCellValueFactory(new PropertyValueFactory<Employee,Boolean>("active"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("name") );
         surnameColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("surname") );
-        //sectionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("section") );
-        //positionColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("position") );
-        //startDateColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("startDate") );
+        addressStreetColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("addressStreet") );
+        addressCityColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("addressCity") );
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("dateOfBirth") );
         //"załadowanie" listy pracowników do ListView
         employeesTable.getItems().addAll(Model.getEmployersList());
+        
         /*
         dayNumberColumn.setCellValueFactory(new PropertyValueFactory<EmployeePresence,String>("dayOfMonth"));
         

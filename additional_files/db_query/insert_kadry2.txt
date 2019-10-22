@@ -1,0 +1,16 @@
+insert into Employees (LastName, FirstName, Active, Address_Street_No, Address_City, Address_Postal, PESEL, Account_No, Marital_status, Number_of_Children, Birth_date, Sex) values 
+('Nowak', 'Adam', 'TRUE', 'Polna 2', 'Szczecinek', 78460, 92041711126, 123456789, 'Żonaty', 0, '1992-04-05', 'MEN')
+
+
+insert into Employees (LastName, FirstName, Active, Address_Street_No, Address_City, Address_Postal, PESEL, Account_No, Marital_status, Number_of_Children, Birth_date, Sex) values 
+('Mlotek', 'Wiktor', 'TRUE', 'Brzydka 7', 'Szczecinek', 78460, 78022913126, 130300000, 'Żonaty', 1, '1978-02-03', 'MEN')
+
+
+insert into Employees (LastName, FirstName, Active, Address_Street_No, Address_City, Address_Postal, PESEL, Account_No, Marital_status, Number_of_Children, Birth_date, Sex) values 
+('Miodowa', 'Patrycja', 'TRUE', 'Nowa 123', 'Supsk', 76200, 95062907007, 777777777, 'Panna', 1, '1995-01-01', 'WOMEN')
+
+/*------------------------------------------------------*/
+
+insert into Contracts (Employee_ID, Position, Section, Contract_Start_Date, Contract_End_Date, Basic_Hourly_Rate, Basic_salary, Type_Of_Contract, Type_Of_Settlement) values ((select Employee_ID from Employees where LastName='Nowak'),'Monter','Stolarnia','2018.01.01', '2020.12.31', 18, 3700, 'UoP', 'Czas_Godzinowo')
+
+insert into Contracts (Employee_ID, Position, Section, Contract_Start_Date, Contract_End_Date, Basic_Hourly_Rate, Basic_salary, Type_Of_Contract, Type_Of_Settlement) values ((select Employee_ID from Employees where LastName='Kowalski'),'Spawacz','Ślusarnia','2017.04.01', '2021.10.31', 19, 3900, 'UoP', 'Czas_Godzinowo')

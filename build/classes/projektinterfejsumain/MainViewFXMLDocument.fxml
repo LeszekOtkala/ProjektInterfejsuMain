@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektinterfejsumain.MainViewFXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektinterfejsumain.MainViewFXMLDocumentController">
     <children>
       <BorderPane prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -44,9 +44,9 @@
                                         <TableColumn fx:id="activeColumn" prefWidth="60.0" text="Aktywny" />
                                           <TableColumn fx:id="surnameColumn" prefWidth="150.0" text="Nazwisko" />
                                         <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Imię" />
-                                          <TableColumn fx:id="sectionColumn" prefWidth="100.0" text="Dział" />
-                                          <TableColumn fx:id="positionColumn" prefWidth="150.0" text="Stanowisko" />
-                                          <TableColumn fx:id="startDateColumn" prefWidth="150.0" text="Data rozpoczęcia" />
+                                          <TableColumn fx:id="addressStreetColumn" prefWidth="100.0" text="Ulica_Nr" />
+                                          <TableColumn fx:id="addressCityColumn" prefWidth="150.0" text="Miasto" />
+                                          <TableColumn fx:id="birthDateColumn" prefWidth="150.0" text="Data_urodzenia" />
                                       </columns>
                                        <VBox.margin>
                                           <Insets />

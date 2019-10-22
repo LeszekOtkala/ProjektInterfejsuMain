@@ -12,6 +12,7 @@ package projektinterfejsumain;
 public class Employee {
     
     //todo pozmieniac wywołania konstruktorów w innych klasach
+    private String emplId;
     private String name;
     private String surname;
     private String addressStreet;
@@ -49,7 +50,8 @@ public class Employee {
         this.accountNo ="Nr konta";
     }
     
-    public Employee(String name, String surname, String addressStreet, String addressCity, String postal, String personalId, /*String section, String position, String startDate,*/ boolean active, int children, String maritalStatus, String dateOfBirth, String sex, String accountNo) {
+    public Employee(String emplId, String name, String surname, String addressStreet, String addressCity, String postal, String personalId, /*String section, String position, String startDate,*/ boolean active, int children, String maritalStatus, String dateOfBirth, String sex, String accountNo) {
+        this.emplId=emplId;
         this.name = name;
         this.surname = surname;
         this.addressStreet = addressStreet;
@@ -67,7 +69,16 @@ public class Employee {
         this.accountNo = accountNo;
     }
     
-  public String getName() {
+// getters and setters
+    
+    public String getEmpl_Id() {
+        return emplId;
+    }
+
+    public void setEmpl_Id(String Empl_Id) {
+        this.emplId = Empl_Id;
+    }
+    public String getName() {
         return name;
     }
 

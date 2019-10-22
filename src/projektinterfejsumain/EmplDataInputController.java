@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -93,6 +94,9 @@ public class EmplDataInputController implements Initializable {
 
     @FXML
     private TextField emplAccountNumber;
+       @FXML
+    private Label labelEmplId;
+
     
    @FXML
    private Button emplSave;
@@ -151,7 +155,8 @@ public class EmplDataInputController implements Initializable {
     } }  
     //ustawienie pól GUI na dane edytowaniego pracownika
    public void setEditEmployee(){
-         
+     System.out.println(employee.getEmpl_Id());
+     labelEmplId.setText(employee.getEmpl_Id());
      emplName.setText(employee.getName());
      emplSurname.setText(employee.getSurname());
      emplAddressStreet.setText(employee.getAddressStreet());
@@ -179,7 +184,7 @@ public class EmplDataInputController implements Initializable {
    } 
    
    public void addEmployeeToDB(){
-       String query="insert into Pracownicy (Nazwisko, Imie, Aktywny, Adres_Ulica_Nr, Adres_Miasto, Adres_Kod_Poczt, PESEL, Nr_konta, Stan_cywilny, Liczba_dzieci, Rok_urodzenia, Plec) values ('"
+       String query="insert into Employees (LastName, FirstName, Active, Address_Street_No, Address_City, Address_Postal, PESEL, Account_No, Marital_status, Number_of_Children, Birth_date, Sex) values ('"
                +emplSurname.getText()+"', '"+emplName.getText()+"', '"+emplActive.isSelected()+"', '"+emplAddressStreet.getText()+"', '"+emplAddressCity.getText()+"',"+emplAddressPostalCode.getText()
                +","+emplPersId.getText()+","+emplAccountNumber.getText()+", '"+emplMaritalStatus.getSelectionModel().getSelectedItem().toString()+"',"+Integer.valueOf(emplNumberChildren.getText())+",'"
                +emplBirthDate.getValue().format(DateTimeFormatter.BASIC_ISO_DATE)+"', '"+emplSex.getSelectionModel().getSelectedItem()+"')";
@@ -207,12 +212,12 @@ public class EmplDataInputController implements Initializable {
    }
    
     public void updateEmployeeToDB(){
-       String query="update Pracownicy set Nazwisko='"+emplSurname.getText()+"', Imie='"+emplName.getText()+"', Aktywny='"+String.valueOf(emplActive.isSelected())+"', Adres_Ulica_Nr='"+emplAddressStreet.getText()+"', Adres_Miasto='"+emplAddressCity.getText()+"', Adres_Kod_Poczt="+emplAddressPostalCode.getText()+", PESEL="+emplPersId.getText()+", Nr_konta="+emplAccountNumber.getText()+", Stan_cywilny='"+emplMaritalStatus.getSelectionModel().getSelectedItem().toString()+"', Liczba_dzieci="+Integer.valueOf(emplNumberChildren.getText())+", Rok_urodzenia='"+emplBirthDate.getValue().format(DateTimeFormatter.BASIC_ISO_DATE)+"', Plec='"+emplSex.getSelectionModel().getSelectedItem()+
-                    "'where Imie='"+emplName.getText()+"'AND Nazwisko='"+emplSurname.getText()+"'";
+       String query="update Employees set LastName='"+emplSurname.getText()+"', FirstName='"+emplName.getText()+"', Active='"+String.valueOf(emplActive.isSelected())+"', Address_Street_No='"+emplAddressStreet.getText()+"', Address_City='"+emplAddressCity.getText()+"', Address_Postal="+emplAddressPostalCode.getText()+", PESEL="+emplPersId.getText()+", Account_No="+emplAccountNumber.getText()+", Marital_status='"+emplMaritalStatus.getSelectionModel().getSelectedItem().toString()+"', Number_of_Children="+Integer.valueOf(emplNumberChildren.getText())+", Birth_date='"+emplBirthDate.getValue().format(DateTimeFormatter.BASIC_ISO_DATE)+"', Sex='"+emplSex.getSelectionModel().getSelectedItem()+
+                    "' where Employee_ID= "+labelEmplId.getText();
        System.out.println(query);
        System.out.println(emplBirthDate.getValue());
        
-        String conString="jdbc:sqlserver://localhost;databaseName=kadry1;selectMethod=cursor";
+        String conString="jdbc:sqlserver://localhost;databaseName=kadry2;selectMethod=cursor";
         String dbUser="TestUser";
         String dbPassword="mypass";
          try {

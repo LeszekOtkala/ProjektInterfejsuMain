@@ -70,8 +70,8 @@ public class FilretingController implements Initializable {
              System.out.println(this.getMainControler());
              choiceBoxFilter.getItems().add("Imię");
              choiceBoxFilter.getItems().add("Nazwisko");
-             choiceBoxFilter.getItems().add("Stanowisko");
-             choiceBoxFilter.getItems().add("Dział");
+             choiceBoxFilter.getItems().add("Miasto");
+             choiceBoxFilter.getItems().add("Ulica_nr");
          });
     }    
     

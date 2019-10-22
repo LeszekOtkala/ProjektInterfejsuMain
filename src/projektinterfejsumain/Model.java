@@ -28,9 +28,21 @@ public class Model extends java.util.Observable {
 
     private static String filter;
     private static boolean activeFilter;
-    private static String conString="jdbc:sqlserver://localhost;databaseName=kadry1;selectMethod=cursor";
+    private static String conString="jdbc:sqlserver://localhost;databaseName=kadry2;selectMethod=cursor";
     private static String dbUser="TestUser";
     private static String dbPassword="mypass";
+
+   
+private static ObservableList<Employee> employeesList= FXCollections.observableArrayList();
+private static ObservableList<EmployeePresence> attendanceList= FXCollections.observableArrayList();    
+private static ObservableList<Contract> contractsList= FXCollections.observableArrayList(); 
+
+
+/**
+ * 
+ *  employeesList
+ */
+
 
     public static boolean isActiveFilter() {
         return activeFilter;
@@ -39,14 +51,9 @@ public class Model extends java.util.Observable {
     public static void setActiveFilter(boolean activeFilter) {
         Model.activeFilter = activeFilter;
     }
-    
-private static ObservableList<Employee> employeesList= FXCollections.observableArrayList();
-private static ObservableList<EmployeePresence> attendanceList= FXCollections.observableArrayList();    
-
     public static String getFilter() {
         return filter;
     }
-
     public static void setFilter(String filter) {
         Model.filter = filter;
         System.out.println("Zmieniono filtrowanie na "+filter);
@@ -55,23 +62,18 @@ private static ObservableList<EmployeePresence> attendanceList= FXCollections.ob
         switch(filterNumber){
             case 0: return new FilteredList<Employee>(employeesList, new Filter1());
             case 1: return new FilteredList<Employee>(employeesList, new Filter2());
-            //case 2: return new FilteredList<Employee>(employeesList, new Filter3());
-           // case 3: return new FilteredList<Employee>(employeesList, new Filter4());
+            case 2: return new FilteredList<Employee>(employeesList, new Filter3());
+            case 3: return new FilteredList<Employee>(employeesList, new Filter4());
             case 6: return new FilteredList<Employee>(employeesList, new Filter5());
             default: return new FilteredList<Employee>(employeesList);
         }
         
     }
         
-public static void createEmployeesList()
-    {   //tworzenie listy pracowników oraz test połączenia z bazą mssql
+    public static void createEmployeesList(){  
+        //tworzenie listy pracowników oraz test połączenia z bazą mssql
         
-        //String queryString="SELECT Imie, Nazwisko, Dział, Stanowisko,  Data_start, Aktywny from PRACOWNICY, UMOWA where PRACOWNICY.Id_Prac=UMOWA.Id_Prac";
-                                //String name, String surname, String section, String position, String startDate, boolean active
-        String queryString="SELECT Imie, Nazwisko, Adres_Ulica_Nr, Adres_Miasto, Adres_Kod_Poczt, PESEL,  Aktywny, Liczba_dzieci, Stan_Cywilny, Rok_urodzenia, Plec, Nr_konta from PRACOWNICY";// left join UMOWA ON PRACOWNICY.Id_Prac=UMOWA.Id_Prac";
-        //String queryString="SELECT Imie, Nazwisko, Adres_Ulica_Nr, Adres_Miasto, Adres_Kod_Poczt, PESEL, Dział, Stanowisko, Data_start, Aktywny, Liczba_dzieci, Stan_Cywilny, Rok_urodzenia, Plec, Nr_konta from PRACOWNICY left join UMOWA ON PRACOWNICY.Id_Prac=UMOWA.Id_Prac";
-        //String queryString="SELECT Imie, Nazwisko, Adres_Ulica_Nr, Adres_Miasto, Adres_Kod_Poczt, PESEL, Dział, Stanowisko, Data_start, Aktywny, Liczba_dzieci, Stan_Cywilny, Rok_urodzenia, Plec, Nr_konta from PRACOWNICY, UMOWA where PRACOWNICY.Id_Prac=UMOWA.Id_Prac";
-        //String name, String surname, String addressStreet, String addressCity, String postal, String personalId, String section, String position, String startDate, boolean active, int children, String maritalStatus, String dateOfBirth, String sex, String accountNo
+         String queryString="SELECT Employee_ID, FirstName, LastName, Address_Street_No, Address_City, Address_Postal, PESEL,  Active, Number_of_Children, Marital_status, Birth_date, Sex, Account_No from Employees";// left join Contracts ON Employees.Employee_ID=Contracts.Employee_ID";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con=DriverManager.getConnection(conString,dbUser,dbPassword);
@@ -80,7 +82,7 @@ public static void createEmployeesList()
            
             while(rs.next()){
                 
-                employeesList.add(new Employee(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), rs.getBoolean(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12)));                   
+                employeesList.add(new Employee(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7), rs.getBoolean(8),rs.getInt(9),rs.getString(10),rs.getString(11),rs.getString(12), rs.getString(13)));                   
                 //employeesList.add(new Employee(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getBoolean(10),rs.getInt(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15)));                   
             
             }
@@ -97,9 +99,9 @@ public static void createEmployeesList()
     public static void addEmployeeToList(){
         employeesList.add(new Employee());
     }
-    public static void addEmployeeToList(String name, String surname, String addressStreet, String addressCity, String postal, String personalId, String section, String position, String startDate, boolean active, int children, String maritalStatus, String dateOfBirth, String sex, String accountNo){
+    public static void addEmployeeToList(String emplId, String name, String surname, String addressStreet, String addressCity, String postal, String personalId, String section, String position, String startDate, boolean active, int children, String maritalStatus, String dateOfBirth, String sex, String accountNo){
            
-           employeesList.add(new Employee(name, surname,addressStreet, addressCity, postal, personalId, /*section,position, startDate,*/ active, children, maritalStatus, dateOfBirth, sex, accountNo));
+           employeesList.add(new Employee(emplId, name, surname,addressStreet, addressCity, postal, personalId, /*section,position, startDate,*/ active, children, maritalStatus, dateOfBirth, sex, accountNo));
            //employeesList.add(new Employee());
        }
       
@@ -113,7 +115,7 @@ public static void createEmployeesList()
         
        try {
            
-            String queryString= "DELETE from PRACOWNICY WHERE Imie='"+employee.getName()+"'and NAZWISKO='"+employee.getSurname()+"';";
+            String queryString= "DELETE from Employees WHERE Employee_ID= "+employee.getEmpl_Id();
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con=DriverManager.getConnection(conString,dbUser,dbPassword);
             Statement statement=con.createStatement();
@@ -127,55 +129,76 @@ public static void createEmployeesList()
         } catch (Exception ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        
-        
-        
-        
+                   
         
     }
     
     public static void clearEmployeesList(){
         employeesList.clear();
     }
-public static void createAttendanceList(){
-//     attendanceList.add(new EmployeePresence(new Employee("Jan", "Kowalski", "stolarnia", "stolarz","02.02.2018",true),30,"Styczeń" ));
-     //attendanceList.add(new EmployeePresence(new Employee("Adam", "Nowak", "stolarnia", "stolarz","03.03.2018",true ),30,"Styczeń" ));  
-
-}    
-public static ObservableList<EmployeePresence> getAttendanceList(){
-        
-        return attendanceList;
     
+    /**
+     * list of presence of employees
+     * 
+     */    
+
+
+    public static void createAttendanceList(){
+    //     attendanceList.add(new EmployeePresence(new Employee("Jan", "Kowalski", "stolarnia", "stolarz","02.02.2018",true),30,"Styczeń" ));
+         //attendanceList.add(new EmployeePresence(new Employee("Adam", "Nowak", "stolarnia", "stolarz","03.03.2018",true ),30,"Styczeń" ));  
+
+    }    
+    public static ObservableList<EmployeePresence> getAttendanceList(){
+
+            return attendanceList;
+
+        }
+
+    public static void createContractsList(){
+        
+        //todo -> all things to create list
     }
+    
+    
+    
+//end of class    
 }
 
+
+
+
+
+
+/**
+ * filters for employeeList
+*/
 class Filter1 implements Predicate<Employee>{
     @Override
     public boolean test(Employee t){
-        return t.getName().equals(Model.getFilter());
+        return t.getName().contains(Model.getFilter());
     }
 }
 
 class Filter2 implements Predicate<Employee>{
     @Override
     public boolean test(Employee t){
-        return t.getSurname().equals(Model.getFilter());
+        return t.getSurname().contains(Model.getFilter());
     }
 }
-/*
+
 class Filter3 implements Predicate<Employee>{
     @Override
     public boolean test(Employee t){
-        return t.getPosition().equals(Model.getFilter());
+        return t.getAddressCity().contains(Model.getFilter());
     }
 }
 
 class Filter4 implements Predicate<Employee>{
     @Override
     public boolean test(Employee t){
-        return t.getSection().equals(Model.getFilter());
+        return t.getAddressStreet().contains(Model.getFilter());
     }
-}    */
+}    
     class Filter5 implements Predicate<Employee>{
     @Override
     public boolean test(Employee t){
