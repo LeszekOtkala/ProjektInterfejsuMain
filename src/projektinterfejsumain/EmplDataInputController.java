@@ -183,22 +183,23 @@ public class EmplDataInputController implements Initializable {
        
    } 
    
+   //przeniesc do modelu
    public void addEmployeeToDB(){
-       String query="insert into Employees (LastName, FirstName, Active, Address_Street_No, Address_City, Address_Postal, PESEL, Account_No, Marital_status, Number_of_Children, Birth_date, Sex) values ('"
+       String addQuery="INSERT INTO Employees(LastName, FirstName, Active, Address_Street_No, Address_City, Address_Postal, PESEL, Account_No, Marital_status, Number_of_Children, Birth_date, Sex) values ('"
                +emplSurname.getText()+"', '"+emplName.getText()+"', '"+emplActive.isSelected()+"', '"+emplAddressStreet.getText()+"', '"+emplAddressCity.getText()+"',"+emplAddressPostalCode.getText()
                +","+emplPersId.getText()+","+emplAccountNumber.getText()+", '"+emplMaritalStatus.getSelectionModel().getSelectedItem().toString()+"',"+Integer.valueOf(emplNumberChildren.getText())+",'"
-               +emplBirthDate.getValue().format(DateTimeFormatter.BASIC_ISO_DATE)+"', '"+emplSex.getSelectionModel().getSelectedItem()+"')";
-       System.out.println(query);
+               +emplBirthDate.getValue().format(DateTimeFormatter.BASIC_ISO_DATE)+"', '"+emplSex.getSelectionModel().getSelectedItem().toString()+"')";
+       System.out.println(addQuery);
        System.out.println(emplBirthDate.getValue());
        
-        String conString="jdbc:sqlserver://localhost;databaseName=kadry1;selectMethod=cursor";
+        String conString="jdbc:sqlserver://localhost;databaseName=kadry2;selectMethod=cursor";
         String dbUser="TestUser";
         String dbPassword="mypass";
          try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con=DriverManager.getConnection(conString,dbUser,dbPassword);
             Statement statement=con.createStatement();
-            statement.executeUpdate(query);
+            statement.executeUpdate(addQuery);
             
           con.close();
           Model.clearEmployeesList();
@@ -208,9 +209,10 @@ public class EmplDataInputController implements Initializable {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
         }   
         
-    //update Pracownicy set Rok_urodzenia='1997-02-03' where Imie='Jan' and Nazwisko='Kowalski'    
-   }
    
+   }
+    //update Pracownicy set Rok_urodzenia='1997-02-03' where Imie='Jan' and Nazwisko='Kowalski'    
+   //przeniesc do modelu
     public void updateEmployeeToDB(){
        String query="update Employees set LastName='"+emplSurname.getText()+"', FirstName='"+emplName.getText()+"', Active='"+String.valueOf(emplActive.isSelected())+"', Address_Street_No='"+emplAddressStreet.getText()+"', Address_City='"+emplAddressCity.getText()+"', Address_Postal="+emplAddressPostalCode.getText()+", PESEL="+emplPersId.getText()+", Account_No="+emplAccountNumber.getText()+", Marital_status='"+emplMaritalStatus.getSelectionModel().getSelectedItem().toString()+"', Number_of_Children="+Integer.valueOf(emplNumberChildren.getText())+", Birth_date='"+emplBirthDate.getValue().format(DateTimeFormatter.BASIC_ISO_DATE)+"', Sex='"+emplSex.getSelectionModel().getSelectedItem()+
                     "' where Employee_ID= "+labelEmplId.getText();

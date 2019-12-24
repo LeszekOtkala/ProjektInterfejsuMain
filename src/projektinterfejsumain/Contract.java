@@ -14,9 +14,10 @@ import java.sql.Date;
  */
 public class Contract {
 
-    
+    //to do -> add employeId to constructor, create getter and setter for this field - bur first - is this fild needed?
     
     private String contractId;
+    private String employeeId;
     private String section;
     private String position;
     private Date endDate;
@@ -27,7 +28,7 @@ public class Contract {
     private String typeOfSettlement;
     
     
-    public Contract(String contractId, String section, String position, Date endDate, Date startDate, float basicHourlyRate, float basicSalary, String typeOfContract, String typeOfSettlement) {
+    public Contract(String contractId, String section, String position, Date startDate, Date endDate, float basicHourlyRate, float basicSalary, String typeOfContract, String typeOfSettlement) {
         this.contractId = contractId;
         this.section = section;
         this.position = position;

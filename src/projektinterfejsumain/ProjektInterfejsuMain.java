@@ -13,13 +13,17 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Dom
+ * @author Leszek Otkała
  */
 public class ProjektInterfejsuMain extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainViewFXMLDocument.fxml"));
+        //tutaj dodac uruchamianie okna z polaczeniem do bazy danych - po połączeniu nazwa serwera, nazwa użytkownika  i hasło mogą być wykorzystane 
+        //do komunikacji z bazą - done
+        //napisac klasę z takim oknem (done) + mozliwosc utworzenia nowej DB (todo)
+        //Parent root = FXMLLoader.load(getClass().getResource("MainViewFXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -11,10 +11,17 @@ package projektinterfejsumain;
  */
 public class EmployeePresence {
    private Employee employee;
-   private String [] typeOfPresence;
+   private String salary_Id;
+   private String Employee_Id;
+   private String typeOfPresence; //please change name of column in DB
+   private String start_time;
+   private String end_time;
+   private String hourly_rate;
+   private int day_of_entry; //please change name of column in DB
    private String month;
-   private int[] dayOfMonth;
-   private double[] numberOfBasicHours, overtime50, overtime100, totalHours;
+   //private int dayOfMonth;
+   private int year;
+  // private double[] numberOfBasicHours, overtime50, overtime100, totalHours;
    private int monthNumberOfDays;
 
     
@@ -24,31 +31,32 @@ public class EmployeePresence {
        month="";
        
        for(int i=0; i<monthNumberOfDays; i++){
-       typeOfPresence[i]="";    
-       dayOfMonth[i]=i+1;
-       numberOfBasicHours[i]=0;
+       typeOfPresence="";    
+       //dayOfMonth=;
+      /* numberOfBasicHours[i]=0;
        overtime100[i]=0;
        overtime50[i]=0;
-       totalHours[i]=0;
+       totalHours[i]=0;*/
        }
        
        
    }
-   public EmployeePresence(Employee employee, int monthNumberOfDays, String month){
+   public EmployeePresence(Employee employee, int day_of_entry, String month){
        monthNumberOfDays=31;
        this.employee = employee;
        this.month="month";
        
-       for(int i=0; i<monthNumberOfDays; i++){
-       this.typeOfPresence[i]="Normal";    
-       dayOfMonth[i]=i+1;
+       {
+       this.typeOfPresence="Normal";    
+       this.day_of_entry=day_of_entry;
+       /*
        if(i%7==0||(i+1)%7==0)
-           numberOfBasicHours[i]=0;
+         numberOfBasicHours[i]=0;
        else
        numberOfBasicHours[i]=8;
        overtime100[i]=0;
        overtime50[i]=0;
-       totalHours[i]=0;
+       totalHours[i]=0;*/
        }
    }   
     public Employee getEmployee() {
@@ -68,21 +76,21 @@ public class EmployeePresence {
     }
 
     public String getTypeOfPresence(int i) {
-        return typeOfPresence[i];
+        return typeOfPresence;
     }
 
-    public void setTypeOfPresence(String typeOfPresence, int i) {
-        this.typeOfPresence[i] = typeOfPresence;
+    public void setTypeOfPresence(String typeOfPresence) {
+        this.typeOfPresence = typeOfPresence;
     }
 
-    public int[] getDayOfMonth() {
-        return dayOfMonth;
+    public int getDay_of_entry() {
+        return day_of_entry;
     }
 
-    public void setDayOfMonth(int[] dayOfMonth) {
-        this.dayOfMonth = dayOfMonth;
+    public void setDayOfMonth(int day_of_entry) {
+        this.day_of_entry = day_of_entry;
     }
-
+/*
     public double[] getNumberOfBasicHours() {
         return numberOfBasicHours;
     }
@@ -113,7 +121,7 @@ public class EmployeePresence {
 
     public void setTotalHours(double[] totalHours) {
         this.totalHours = totalHours;
-    }
+    } */
   public void setMonthNumberOfDays(int monthNumberOfDays) {
         this.monthNumberOfDays = monthNumberOfDays;
     } 
